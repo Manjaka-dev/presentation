@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer les apps que vous utilisez - Présentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+            max-height: 700px;
+        }
+
+        .slides-wrapper {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            padding: 40px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .slide p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #4a5568;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .slide-image {
+            max-width: 100%;
+            max-height: 40%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .slide-icon {
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+
+        .slide-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #7a8a99;
+            font-style: italic;
+        }
+
+        .logos-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .logo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .logo-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .column-item {
+            background: #f0f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            color: #2c3e50;
+        }
+
+        .column-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .demo-screen {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            text-align: left;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        button {
+            padding: 10px 25px;
+            background: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #2c5aa0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(49, 130, 206, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            font-size: 1rem;
+            color: #4a5568;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 20px;
+            min-width: 100px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3182ce, #667eea);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .punchline {
+            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            color: #d63031;
+            font-weight: bold;
+            font-style: italic;
+            background: #fff5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #d63031;
+        }
+
+        .list-items {
+            text-align: left;
+            display: inline-block;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            color: #4a5568;
+        }
+
+        .list-items li {
+            margin: 12px 0;
+            list-style: none;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .list-items li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #3182ce;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 25px;
+                gap: 20px;
+            }
+
+            .controls {
+                padding: 15px 20px;
+                flex-direction: column;
+            }
+
+            .progress-bar {
+                margin: 0;
+                width: 100%;
+                min-width: auto;
+            }
+
+            .slide-counter {
+                min-width: auto;
+            }
+
+            .container {
+                max-height: 100vh;
+                border-radius: 0;
+                height: 100vh;
+            }
+
+            body {
+                padding: 0;
+            }
+
+            .three-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .logos-group {
+                gap: 15px;
+            }
+
+            .logo-item img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .slide h1 {
+                font-size: 1.8rem;
+            }
+
+            .slide h2 {
+                font-size: 1.4rem;
+            }
+
+            .slide p {
+                font-size: 1rem;
+            }
+
+            .slide-icon {
+                font-size: 3rem;
+            }
+
+            button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .controls {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slides-wrapper">
+            <!-- SLIDE 1: Titre -->
+            <div class="slide active">
+                <div class="slide-icon">🎬</div>
+                <h1>Créer les apps que vous utilisez</h1>
+                <p class="slide-subtitle">Développeur web</p>
+                <div class="logos-group">
+                    <div class="logo-item">
+                        <div style="width: 60px; height: 60px; background: #E4405F; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📷</div>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="logo-item">
+                        <div style="width: 60px; height: 60px; background: #000000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🎵</div>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="logo-item">
+                        <div style="width: 60px; height: 60px; background: #FF0000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">▶️</div>
+                        <span>YouTube</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: Question -->
+            <div class="slide">
+                <div class="slide-icon">❓</div>
+                <h1>Vous utilisez internet ?</h1>
+                <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=300&fit=crop" alt="Personne avec téléphone" class="slide-image" onerror="this.src='public/phone-user.jpg'">
+                <p style="font-style: italic; color: #7a8a99;">*À vous de lever la main ! 🙋</p>
+            </div>
+
+            <!-- SLIDE 3: Décalage -->
+            <div class="slide">
+                <div class="slide-icon">🤯</div>
+                <h1>Mais… vous savez comment ?</h1>
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=400&h=300&fit=crop" alt="Personne confuse" class="slide-image" onerror="this.src='public/confused.jpg'">
+            </div>
+
+            <!-- SLIDE 4: Métaphore -->
+            <div class="slide">
+                <div class="slide-icon">🔧</div>
+                <h1>Sous le capot</h1>
+                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop" alt="Capot de voiture" class="slide-image" onerror="this.src='public/car-engine.jpg'">
+                <p>C'est comme regarder sous le capot d'une voiture pour voir comment ça marche</p>
+            </div>
+
+            <!-- SLIDE 5: Définition simple -->
+            <div class="slide">
+                <div class="slide-icon">🧠</div>
+                <h1>Créer des systèmes</h1>
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Schéma système" class="slide-image" onerror="this.src='public/system-schema.jpg'">
+                <p><strong>User</strong> → Site → <strong>Réponse</strong></p>
+            </div>
+
+            <!-- SLIDE 6: Analogie burger -->
+            <div class="slide">
+                <div class="slide-icon">🍔</div>
+                <h1>Commander en ligne</h1>
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop" alt="Burger commande" class="slide-image" onerror="this.src='public/burger.jpg'">
+                <p>Imaginez que vous commandez un burger en ligne...</p>
+            </div>
+
+            <!-- SLIDE 7: Frontend -->
+            <div class="slide">
+                <div class="slide-icon">🧩</div>
+                <h1>Ce que vous voyez</h1>
+                <h2 style="color: #3182ce;">Frontend</h2>
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Interface utilisateur" class="slide-image" onerror="this.src='public/frontend.jpg'">
+                <p>Le menu, les images, les boutons... la partie <strong>jolie</strong></p>
+            </div>
+
+            <!-- SLIDE 8: Backend -->
+            <div class="slide">
+                <div class="slide-icon">🧠</div>
+                <h1>Ce que vous ne voyez pas</h1>
+                <h2 style="color: #3182ce;">Backend</h2>
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Cuisine et engrenages" class="slide-image" onerror="this.src='public/backend.jpg'">
+                <p>Le site envoie votre commande <strong>en cuisine</strong></p>
+            </div>
+
+            <!-- SLIDE 9: Base de données -->
+            <div class="slide">
+                <div class="slide-icon">🗄️</div>
+                <h1>Où sont les infos</h1>
+                <h2 style="color: #3182ce;">Base de données</h2>
+                <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop" alt="Base de données" class="slide-image" onerror="this.src='public/database.jpg'">
+                <p>Vos informations, vos commandes, vos comptes... tout est stocké quelque part</p>
+            </div>
+
+            <!-- SLIDE 10: Réalité -->
+            <div class="slide">
+                <div class="slide-icon">😂</div>
+                <h1>Ça ne marche pas 😅</h1>
+                <img src="https://images.unsplash.com/photo-1602941425259-8ae2e3a6d9a9?w=400&h=300&fit=crop" alt="Erreur bug" class="slide-image" onerror="this.src='public/bug-error.jpg'">
+                <div class="punchline">
+                    Tu écris du code → ça ne marche pas<br>
+                    Tu corriges → ça ne marche toujours pas<br>
+                    Tu touches à rien → et ça marche 🎉
+                </div>
+            </div>
+
+            <!-- SLIDE 11: Démo -->
+            <div class="slide">
+                <div class="slide-icon">💻</div>
+                <h1>Démonstration</h1>
+                <div class="demo-screen">
+                    > npm start<br>
+                    > Application is running on http://localhost:3000<br>
+                    > Click here! →<br>
+                    <br>
+                    ✅ Data saved successfully!
+                </div>
+                <p style="margin-top: 20px; color: #7a8a99;"><em>Un exemple visuel de ce qui se passe</em></p>
+            </div>
+
+            <!-- SLIDE 12: Compétences -->
+            <div class="slide">
+                <div class="slide-icon">🧠</div>
+                <h1>Réfléchir • Tester • Recommencer</h1>
+                <div class="three-columns">
+                    <div class="column-item">
+                        <strong>Réfléchir</strong>
+                        Comprendre le problème
+                    </div>
+                    <div class="column-item">
+                        <strong>Tester</strong>
+                        Expérimenter des solutions
+                    </div>
+                    <div class="column-item">
+                        <strong>Recommencer</strong>
+                        Améliorer et itérer
+                    </div>
+                </div>
+                <p style="margin-top: 20px;"><strong>Les compétences importantes :</strong> curiosité, logique, patience</p>
+            </div>
+
+            <!-- SLIDE 13: Pourquoi ? -->
+            <div class="slide">
+                <div class="slide-icon">🚀</div>
+                <h1>Créer • Liberté • Opportunités</h1>
+                <ul class="list-items">
+                    <li><strong>Créer vos propres idées</strong> - Une app, un site, un projet perso</li>
+                    <li><strong>Travailler de partout</strong> - Un ordi suffit</li>
+                    <li><strong>C'est utile partout</strong> - Tous les domaines ont besoin de développeurs</li>
+                </ul>
+            </div>
+
+            <!-- SLIDE 14: Commencer -->
+            <div class="slide">
+                <div class="slide-icon">🌱</div>
+                <h1>Commence aujourd'hui</h1>
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Laptop et code" class="slide-image" onerror="this.src='public/laptop-code.jpg'">
+                <div style="background: #e6f2ff; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <strong>✨ Les outils pour commencer :</strong><br>
+                    📝 <a href="https://code.visualstudio.com/" style="color: #3182ce; text-decoration: none;">Visual Studio Code</a> •
+                    🐙 <a href="https://github.com/" style="color: #3182ce; text-decoration: none;">GitHub</a>
+                </div>
+            </div>
+
+            <!-- SLIDE 15: Conclusion -->
+            <div class="slide">
+                <div class="slide-icon">🎯</div>
+                <h1>Construire, pas juste utiliser</h1>
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Quelqu'un qui code" class="slide-image" onerror="this.src='public/building.jpg'">
+                <div class="punchline" style="margin-top: 20px; border-left-color: #3182ce; color: #3182ce; background: #f0f4f8;">
+                    Aujourd'hui, vous utilisez internet.<br>
+                    Mais vous pouvez aussi le <strong>construire</strong>.<br>
+                    Et ça commence juste par essayer. 🚀
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prev" onclick="changeSlide(-1)">← Précédent</button>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <span class="slide-counter"><span id="current">1</span> / <span id="total">15</span></span>
+            <button id="next" onclick="changeSlide(1)">Suivant →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+
+            document.getElementById('current').textContent = currentSlide;
+            document.getElementById('total').textContent = totalSlides;
+
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+
+            document.getElementById('prev').disabled = currentSlide === 1;
+            document.getElementById('next').disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+        document.getElementById('total').textContent = totalSlides;
+    </script>
+</body>
+</html>
+

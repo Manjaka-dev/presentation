@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 
 const currentSlide = ref(1)
-const totalSlides = ref(15)
+const totalSlides = ref(16)
 
 // Icônes SVG
 const icons = {
@@ -23,6 +23,7 @@ const slides = [
   { type: 'question', icon: 'question', title: 'Vous utilisez internet ?' },
   { type: 'image', icon: 'question', title: 'Mais… vous savez comment ?' },
   { type: 'image-text', icon: 'tools', title: 'Sous le capot', text: 'C\'est comme regarder sous le capot d\'une voiture pour voir comment ça marche', image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop' },
+  { type: 'profile', icon: 'target', title: 'Andriantsoa A. Manjaka', subtitle: '3eme annee en informatique et developper Freelance chez I-Tsika' },
   { type: 'image-text', icon: 'brain', title: 'Créer des systèmes', text: '<strong>User</strong> → Site → <strong>Réponse</strong>', image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop' },
   { type: 'image-text', icon: 'code', title: 'Commander en ligne', text: 'Imaginez que vous commandez un burger en ligne...', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop' },
   { type: 'image-text-subtitle', icon: 'code', title: 'Ce que vous voyez', subtitle: 'Frontend', text: 'Le menu, les images, les boutons... la partie <strong>jolie</strong>', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop' },
@@ -113,6 +114,16 @@ onMounted(() => {
           <div class="image-section">
             <img :src="slides[currentSlide - 1].image" :alt="slides[currentSlide - 1].title"
                  @error="handleImageError($event, 'public/placeholder.jpg')">
+          </div>
+        </div>
+
+        <!-- SLIDE PROFILE -->
+        <div v-else-if="slides[currentSlide - 1].type === 'profile'" class="slide-content">
+          <h1>Presentation</h1>
+          <div class="profile-card">
+            <p><strong>Andriantsoa A. Manjaka</strong></p>
+            <p>3eme annee en informatique</p>
+            <p>developper Freelance chez I-Tsika</p>
           </div>
         </div>
 
@@ -378,6 +389,23 @@ p {
   margin-top: 30px;
   color: #2d2d2d;
   font-weight: 500;
+}
+
+.profile-card {
+  width: min(760px, 100%);
+  margin-top: 12px;
+  padding: 28px 30px;
+  border-radius: 16px;
+  background: #eef5ff;
+  border: 1px solid #d7e7ff;
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.08);
+  text-align: left;
+}
+
+.profile-card p {
+  margin: 10px 0;
+  font-size: 1.08rem;
+  color: #24406b;
 }
 
 .conclusion-box {
@@ -674,6 +702,14 @@ p {
     min-height: 120px;
   }
 
+  .profile-card {
+    padding: 22px;
+  }
+
+  .profile-card p {
+    font-size: 0.98rem;
+  }
+
   .controls {
     padding: 15px 15px;
     gap: 10px;
@@ -783,6 +819,14 @@ p {
     padding: 12px;
     min-height: 100px;
     max-width: 100%;
+  }
+
+  .profile-card {
+    padding: 18px;
+  }
+
+  .profile-card p {
+    font-size: 0.92rem;
   }
 
   .grid-3 {

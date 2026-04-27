@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer les apps que vous utilisez - Présentation</title>
+    <title>Presentation</title>
     <style>
         * {
             margin: 0;
@@ -262,6 +262,24 @@
             border-left: 4px solid #d63031;
         }
 
+        .profile-card {
+            width: min(720px, 100%);
+            margin-top: 10px;
+            padding: 28px 30px;
+            border-radius: 16px;
+            background: #eef5ff;
+            border: 1px solid #d7e7ff;
+            box-shadow: 0 10px 24px rgba(59, 130, 246, 0.08);
+            text-align: left;
+        }
+
+        .profile-card p {
+            margin: 10px 0;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: #24406b;
+            line-height: 1.5;
+        }
+
         .list-items {
             text-align: left;
             display: inline-block;
@@ -382,6 +400,10 @@
                 font-size: 1.6rem;
                 border-radius: 12px;
             }
+
+            .profile-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -432,7 +454,17 @@
                 <p>C'est comme regarder sous le capot d'une voiture pour voir comment ça marche</p>
             </div>
 
-            <!-- SLIDE 5: Définition simple -->
+            <!-- SLIDE 5: Présentation -->
+            <div class="slide">
+                <h1>Presentation</h1>
+                <div class="profile-card">
+                    <p><strong>Andriantsoa A. Manjaka</strong></p>
+                    <p>3eme annee en informatique</p>
+                    <p>developper Freelance chez I-Tsika</p>
+                </div>
+            </div>
+
+            <!-- SLIDE 6: Définition simple -->
             <div class="slide">
                 <div class="slide-icon">🧠</div>
                 <h1>Créer des systèmes</h1>
@@ -440,7 +472,7 @@
                 <p><strong>User</strong> → Site → <strong>Réponse</strong></p>
             </div>
 
-            <!-- SLIDE 6: Analogie burger -->
+            <!-- SLIDE 7: Analogie burger -->
             <div class="slide">
                 <div class="slide-icon">🍔</div>
                 <h1>Commander en ligne</h1>
@@ -448,7 +480,7 @@
                 <p>Imaginez que vous commandez un burger en ligne...</p>
             </div>
 
-            <!-- SLIDE 7: Frontend -->
+            <!-- SLIDE 8: Frontend -->
             <div class="slide">
                 <div class="slide-icon">🧩</div>
                 <h1>Ce que vous voyez</h1>
@@ -457,7 +489,7 @@
                 <p>Le menu, les images, les boutons... la partie <strong>jolie</strong></p>
             </div>
 
-            <!-- SLIDE 8: Backend -->
+            <!-- SLIDE 9: Backend -->
             <div class="slide">
                 <div class="slide-icon">🧠</div>
                 <h1>Ce que vous ne voyez pas</h1>
@@ -466,7 +498,7 @@
                 <p>Le site envoie votre commande <strong>en cuisine</strong></p>
             </div>
 
-            <!-- SLIDE 9: Base de données -->
+            <!-- SLIDE 10: Base de données -->
             <div class="slide">
                 <div class="slide-icon">🗄️</div>
                 <h1>Où sont les infos</h1>
@@ -475,7 +507,7 @@
                 <p>Vos informations, vos commandes, vos comptes... tout est stocké quelque part</p>
             </div>
 
-            <!-- SLIDE 10: Réalité -->
+            <!-- SLIDE 11: Réalité -->
             <div class="slide">
                 <div class="slide-icon">😂</div>
                 <h1>Ça ne marche pas 😅</h1>
@@ -487,7 +519,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 11: Démo -->
+            <!-- SLIDE 12: Démo -->
             <div class="slide">
                 <div class="slide-icon">💻</div>
                 <h1>Démonstration</h1>
@@ -501,7 +533,7 @@
                 <p style="margin-top: 20px; color: #7a8a99;"><em>Un exemple visuel de ce qui se passe</em></p>
             </div>
 
-            <!-- SLIDE 12: Compétences -->
+            <!-- SLIDE 13: Compétences -->
             <div class="slide">
                 <div class="slide-icon">🧠</div>
                 <h1>Réfléchir • Tester • Recommencer</h1>
@@ -522,7 +554,7 @@
                 <p style="margin-top: 20px;"><strong>Les compétences importantes :</strong> curiosité, logique, patience</p>
             </div>
 
-            <!-- SLIDE 13: Pourquoi ? -->
+            <!-- SLIDE 14: Pourquoi ? -->
             <div class="slide">
                 <div class="slide-icon">🚀</div>
                 <h1>Créer • Liberté • Opportunités</h1>
@@ -533,7 +565,7 @@
                 </ul>
             </div>
 
-            <!-- SLIDE 14: Commencer -->
+            <!-- SLIDE 15: Commencer -->
             <div class="slide">
                 <div class="slide-icon">🌱</div>
                 <h1>Commence aujourd'hui</h1>
@@ -545,7 +577,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 15: Conclusion -->
+            <!-- SLIDE 16: Conclusion -->
             <div class="slide">
                 <div class="slide-icon">🎯</div>
                 <h1>Construire, pas juste utiliser</h1>
@@ -563,7 +595,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progress"></div>
             </div>
-            <span class="slide-counter"><span id="current">1</span> / <span id="total">15</span></span>
+            <span class="slide-counter"><span id="current">1</span> / <span id="total">16</span></span>
             <button id="next" onclick="changeSlide(1)">Suivant →</button>
         </div>
     </div>
